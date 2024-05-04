@@ -5,7 +5,7 @@
 		<view v-for="(item,index) in tabBarList" :key="item.id"
 			:class="{'tab-bar-item': true,currentTar: selected == index}" @click="switchTab(item, index)">
 			<view class="tab_text" :style="{color: selected == index ? TabBarStore.selectedColor : TabBarStore.color}">
-				<image class="tab_img" :src="selected == index ? item.selectedIconPath : item.iconPath"></image>
+				<image v-if="item.selectedIconPath||item.iconPath" class="tab_img" :src="selected == index ? item.selectedIconPath : item.iconPath"></image>
 				<view>{{ item.text }}</view>
 			</view>
 		</view>

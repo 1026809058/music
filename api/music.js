@@ -26,3 +26,27 @@ export function searchMultimatch(data) {
 		data
 	})
 }
+// 获取歌曲详情
+export function songDetail(data) { 
+	return request({
+		url: '/song/detail',
+		method: 'get',
+		data
+	})
+}
+// 获取音乐url
+export function songUrl(data) { 
+	return request({
+		url: '/song/url',
+		method: 'get',
+		data
+	})
+}
+// 可获取音乐是否可用
+export function checkMusic(data) { 
+	return request({
+		url: '/check/music',
+		method: 'get',
+		data
+	})
+}

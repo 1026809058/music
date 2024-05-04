@@ -3,7 +3,7 @@
 		<!-- 顶部导航 -->
 		<searchNavbar :hintList="hintList" @smartbox="smartbox" @recommend="recommend" @searchBtn="searchBtn">
 			<template #left>
-				<up-icon name="list" color="#3e3e3e" size="46" @click="leftMenuBtn"></up-icon>
+				<up-icon name="list" color="#3e3e3e" size="55" @click="leftMenuBtn"></up-icon>
 			</template>
 		</searchNavbar>
 		<!-- 左侧菜单 -->
@@ -24,6 +24,7 @@
 		ref,
 		reactive,
 		onBeforeMount,
+		getCurrentInstance
 	} from 'vue'
 	import {
 		searchSuggest,

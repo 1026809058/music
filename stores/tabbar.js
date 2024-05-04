@@ -13,22 +13,22 @@ export const useTabBarStore = defineStore('tabbar', {
 			list: [{
 					id: 0,
 					"pagePath": "/pages/index/index",
-					"iconPath": "/static/logo/yinyue_logo.png",
-					selectedIconPath:"/static/logo/yinyue_logo.png",
+					"iconPath": "/static/img/yinyue_logo.png",
+					 selectedIconPath:"/static/img/yinyue_logo.png",
 					"text": "首页"
 				},
 				{
 					id: 1,
 					"pagePath": "/pages/music/index",
-					"iconPath": "/static/logo/yinyue_logo.png",
-					selectedIconPath:"/static/logo/yinyue_logo.png",
+					"iconPath": "/static/img/yinyue_logo.png",
+					selectedIconPath:"/static/img/yinyue_logo.png",
 					"text": "音乐"
 				},
 				{
 					id: 2,
 					"pagePath": "/pages/user/index",
-					"iconPath": "/static/logo/yinyue_logo.png",
-					selectedIconPath:"/static/logo/yinyue_logo.png",
+					"iconPath": "/static/img/yinyue_logo.png",
+					selectedIconPath:"/static/img/yinyue_logo.png",
 					"text": "用户"
 				}
 			]

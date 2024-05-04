@@ -17,6 +17,7 @@ export function createApp() {
 	store.use(createUnistorage());
 	app.use(store);
 	app.use(uviewPlus)
+	app.config.globalProperties.$player = uni.createInnerAudioContext();
 	return {
 		app,
 		Pinia

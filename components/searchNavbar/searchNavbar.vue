@@ -8,7 +8,7 @@
 			<template #center>
 				<view class="nav-center" :style="`margin-right:${(menu.width||0)*2+50}rpx`">
 					<up-search placeholder="" v-model.lazy="searchValue" bgColor="#fff" borderColor="#8a8a8a"
-						height="50rpx" searchIconSize="50" :animation="searchBtnShow" :inputStyle="{'font-size':'23rpx'}"
+						height="55rpx" searchIconSize="50" :animation="searchBtnShow" :inputStyle="{'font-size':'23rpx'}"
 						@focus="open" @blur="close" @change="smartbox" @search="searchBtn"
 						@custom="searchBtn"></up-search>
 				</view>
@@ -53,10 +53,6 @@
 		},
 	})
 	let searchValue = ref('');
-	onLoad((options)=>{
-		searchValue.value=options.keyword||''
-		searchBtn()
-	})
 	const searchChange = (e) => {
 		console.log('change', e);
 	}
@@ -89,6 +85,11 @@
 	// 搜索
 	const searchBtn = (() => {
 		emits('searchBtn', searchValue.value)
+	})
+	
+	onLoad((options)=>{
+		searchValue.value=options.keyword||''
+		if(searchValue.value) searchBtn()
 	})
 </script>
 <style lang="scss">
@@ -142,7 +143,6 @@ export default {
 		box-shadow: 0 4px 14px -5px rgba(165, 168, 171, 0.83);
 		z-index: 9;
 		transition: height 0.3s;
-		backdrop-filter: blur(5px);
 
 		.list {
 			width: calc(100% - 20rpx);
@@ -153,7 +153,7 @@ export default {
 				width: auto;
 				padding:20rpx 15rpx;
 				margin: 15rpx 0;
-				font-size: 22rpx;
+				font-size: 26rpx;
 				line-height: 22rpx;
 				border-radius: 5rpx;
 				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

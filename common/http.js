@@ -24,7 +24,7 @@ export const request = (options) => {
 				// }
 				// 如果不满足上述判断就输出数据
 				if (res.data || successCode.indexOf(mapGet(res,'data.code')) > -1) {
-					resolve(mapGet(res,'data.result')||res.data)
+					resolve(mapGet(res,'data.result')||mapGet(res,'data.data',null)||res.data)
 				} else {
 					reject(res)
 				}
