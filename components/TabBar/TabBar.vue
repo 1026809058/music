@@ -81,6 +81,7 @@
 			.tab_img {
 				width: 37rpx;
 				height: 41rpx;
+				color: rgb(234,62,60);
 			}
 
 			// 限制文字大小

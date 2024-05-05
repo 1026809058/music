@@ -19,6 +19,10 @@
 		},
 		globalData: {
 			utils: utils
+		},
+		beforeDestroy:function() {
+			const playerStore = usePlayerStore()
+			playerStore.stop()
 		}
 	}
 </script>

@@ -74,6 +74,15 @@ export let usePlayerStore = defineStore('player', {
 				}
 			})
 		},
+		delMusic(v) {
+				this.playlists.splice(v, 1)
+				if (v < this.playIndex){
+					this.playIndex-- 
+				}else if(v === this.playIndex){
+					audioManager.stop()
+					this.songUrlPlay()
+				} 
+		},
 		//清空播放列表
 		clearPlaylists() {
 			this.playlists = []
@@ -85,14 +94,20 @@ export let usePlayerStore = defineStore('player', {
 			audioManager = uni.getBackgroundAudioManager ?
 				uni.getBackgroundAudioManager() :
 				uni.createInnerAudioContext()
+			if (this.curMusicInfo) {
+				setInfo(this.curMusicInfo)
+				audioManager.startTime = this.currentTime
+			} else {
+				audioManager.title = '音乐';
+				audioManager.singer = '暂无';
+				audioManager.coverImgUrl = '';
+				audioManager.src = 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3';
+			}
 			//循环播放
 			audioManager.loop = this.loopType === 'single'
 			// 自动播放
 			audioManager.autoplay = false;
-			audioManager.title = '音乐';
-			audioManager.singer = '暂无';
-			audioManager.coverImgUrl = '';
-			audioManager.src = 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3';
+			audioManager.stop()
 			audioManager.onPlay(() => {
 				if (audioManager.src ===
 					'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3') audioManager
@@ -132,7 +147,7 @@ export let usePlayerStore = defineStore('player', {
 				}, 1000)
 			)
 			audioManager.onError((res) => {
-				console.log(res.errMsg);
+				console.log(res);
 				console.log(res.errCode);
 			});
 		},
@@ -162,13 +177,14 @@ export let usePlayerStore = defineStore('player', {
 				Promise.all([songDetail({
 					ids: params.id
 				}), songUrl(params)]).then(([detail, url]) => {
-					this.curMusicInfo.singer=arrObjGet(mapGet(detail, 'songs[0].ar'),'name','/')
-					this.curMusicInfo.epname=mapGet(detail, 'songs[0].al.name')
+					this.curMusicInfo.singer = arrObjGet(mapGet(detail, 'songs[0].ar'), 'name',
+						'/')
+					this.curMusicInfo.epname = mapGet(detail, 'songs[0].al.name')
 					this.curMusicInfo.picUrl = mapGet(detail, 'songs[0].al.picUrl')
-					this.curMusicInfo.name =mapGet(detail, 'songs[0].name','未知')
+					this.curMusicInfo.name = mapGet(detail, 'songs[0].name', '未知')
 					this.curMusicInfo.src = mapGet(url, '[0].url', '未知')
 					reslove()
-				}).catch((e)=>{
+				}).catch((e) => {
 					reject(e)
 				})
 				// 	} else {

@@ -1,13 +1,13 @@
 <template>
-	<swiper :current="currentIndex" class="swiper xy-center" :previous-margin="swiperItem+'rpx'" :next-margin="swiperItem+'rpx'"
-		@change="handleChange">
+	<swiper :current="currentIndex" class="swiper xy-center" :previous-margin="swiperItem+'rpx'"
+		:next-margin="swiperItem+'rpx'" @change="handleChange">
 		<swiper-item>
 			<view class="item">
 				11211111
 			</view>
 		</swiper-item>
 		<swiper-item>
-			<view class="item" >
+			<view class="item">
 				<Player></Player>
 			</view>
 		</swiper-item>
@@ -17,6 +17,7 @@
 			</view>
 		</swiper-item>
 	</swiper>
+	<playList></playList>
 </template>
 
 <script setup>
@@ -25,13 +26,14 @@
 	import {
 		ref,
 	} from 'vue'
-	let swiperItem=ref(20)
+	let swiperItem = ref(20)
 	let currentIndex = ref(1)
 </script>
 
 <style lang="scss" scoped>
 	.swiper {
 		height: 100%;
+
 		.item {
 			height: 98%;
 			width: 98%;

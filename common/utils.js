@@ -8,20 +8,32 @@ class Utils {
 		// #endif
 		return menu
 	}
-	 systemInfo() {
+	systemInfo() {
 		let info = {}
 		uni.getSystemInfo({
-			success: function (res) {
-				info=res
+			success: function(res) {
+				info = res
 			},
-			fail:function(err){
+			fail: function(err) {
 				console.log(err);
 			}
 		});
 		return info
-
 	}
-	
-	
+	// obj 返回层数 ，层数不足时跳转地址
+	black(obj = {
+		delta: 1
+	}, url = '/pages/index/index') {
+		let pages = getCurrentPages().length
+		if (pages > 1) {
+			uni.navigateBack(obj)
+		} else {
+			uni.switchTab({
+				url
+			});
+		}
+	}
+
+
 }
 export default new Utils()
