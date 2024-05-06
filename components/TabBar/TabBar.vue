@@ -5,7 +5,7 @@
 		<view v-for="(item,index) in tabBarList" :key="item.id"
 			:class="{'tab-bar-item': true,currentTar: selected == index}" @click="switchTab(item, index)">
 			<view class="tab_text" :style="{color: selected == index ? TabBarStore.selectedColor : TabBarStore.color}">
-				<image v-if="item.selectedIconPath||item.iconPath" class="tab_img" :src="selected == index ? item.selectedIconPath : item.iconPath"></image>
+				<iconFont v-if="item.selectedIconPath||item.iconPath" color="rgb(234,62,60)"  :icon="selected == index ? item.selectedIconPath : item.iconPath" class="tab_img" ></iconFont>
 				<view>{{ item.text }}</view>
 			</view>
 		</view>
@@ -79,9 +79,6 @@
 
 			// 限制每个icon的大小
 			.tab_img {
-				width: 37rpx;
-				height: 41rpx;
-				color: rgb(234,62,60);
 			}
 
 			// 限制文字大小

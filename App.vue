@@ -31,5 +31,6 @@
 	@import "@/uni_modules/uview-plus/index.scss";
 	// 公共样式
 	@import '@/static/styles/index.scss';
+	@import '@/static/iconfont/iconfont.css';
 	/*每个页面公共css */
 </style>

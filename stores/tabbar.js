@@ -13,22 +13,22 @@ export const useTabBarStore = defineStore('tabbar', {
 			list: [{
 					id: 0,
 					"pagePath": "/pages/index/index",
-					"iconPath": "/static/svg/wangyiyunyinle.svg",
-					 selectedIconPath: "/static/svg/wangyiyunyinle.svg",
+					"iconPath": "icon-wangyiyunyinle",
+					 selectedIconPath: "icon-wangyiyunyinle",
 					"text": "发现"
 				},
 				{
 					id: 1,
 					"pagePath": "/pages/music/index",
-					"iconPath": "/static/svg/a-erji2.svg",
-					selectedIconPath:"/static/svg/a-erji2.svg",
+					"iconPath": "icon-a-erji2",
+					selectedIconPath:"icon-a-erji2",
 					"text": "音乐"
 				},
 				{
 					id: 2,
 					"pagePath": "/pages/user/index",
-					"iconPath": "/static/svg/yinle.svg",
-					selectedIconPath:"/static/svg/yinle.svg",
+					"iconPath": "icon-yinle",
+					selectedIconPath:"icon-yinle",
 					"text": "我的"
 				}
 			]

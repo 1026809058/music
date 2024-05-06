@@ -2,10 +2,24 @@ import {
 	baseURL,
 	successCode
 } from '@/config/base.js'; //导入接口的前缀地址
-import { mapGet } from './index';
+import {
+	mapGet
+} from './index';
 
 export const request = (options) => {
 	return new Promise((resolve, reject) => {
+		uni.getNetworkType({
+			success: function(res) {
+				if (res.networkType === 'none') {
+					uni.showToast({
+						title: '暂无网络',
+						icon: 'error',
+						duration: 2000
+					});
+					reject('无网络连接')
+				}
+			}
+		});
 		uni.request({
 			url: baseURL + options.url, //接口地址：前缀+方法中传入的地址
 			method: options.method || 'GET', //请求方法：传入的方法或者默认是“GET”
@@ -23,15 +37,20 @@ export const request = (options) => {
 				// 	})
 				// }
 				// 如果不满足上述判断就输出数据
-				if (res.data || successCode.indexOf(mapGet(res,'data.code')) > -1) {
-					resolve(mapGet(res,'data.result')||mapGet(res,'data.data',null)||res.data)
+				if (res.data || successCode.indexOf(mapGet(res, 'data.code')) > -1) {
+					resolve(mapGet(res, 'data.result') || mapGet(res, 'data.data', null) || res
+						.data)
 				} else {
 					reject(res)
 				}
 			},
 			// 这里的接口请求，如果出现问题就输出接口请求失败
 			fail: (err) => {
-				console.log(err)
+				uni.showToast({
+					title: '请求错误',
+					icon: 'fail',
+					duration: 2000
+				});
 				reject(err)
 			}
 		})
